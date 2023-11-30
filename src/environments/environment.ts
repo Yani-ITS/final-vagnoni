@@ -1,7 +1,7 @@
 export const environment = {
-  production: false,
-  firebase: {
-    apiKey: "AIzaSyCU7aCNCKN1oP-i7-9fFlfAX8S_QMK9-wU",
+    production: false,
+    firebase: {
+      apiKey: "AIzaSyCU7aCNCKN1oP-i7-9fFlfAX8S_QMK9-wU",
 
       authDomain: "app-vagnoni.firebaseapp.com",
 

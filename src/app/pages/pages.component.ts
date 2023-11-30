@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Observable, map, shareReplay } from 'rxjs';
+
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-pages',
@@ -7,4 +10,11 @@ import { Component } from '@angular/core';
 })
 export class PagesComponent {
 
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  .pipe(
+    map(result => result.matches),
+    shareReplay()
+  );
+
+constructor(private breakpointObserver: BreakpointObserver) {}
 }
