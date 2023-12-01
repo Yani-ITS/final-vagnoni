@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Firestore, collection, getDocs, getFirestore } from 'firebase/firestore';
-import { Observable } from 'rxjs';
+import { Firestore, collection, getDocs } from '@angular/fire/firestore';
+import { Observable, from, map } from 'rxjs';
+
 
 
 @Component({
@@ -10,27 +11,20 @@ import { Observable } from 'rxjs';
 })
 export class ProductosComponent implements OnInit{
 
-  productos: Observable<any[]> | undefined;
+  productos$: Observable<any[]> | undefined; // Cambiado a Observable
 
-  constructor(private database: Firestore) { }
+  constructor(private firestore: Firestore) { }
 
   ngOnInit(): void {
+    const productosCollection = collection(this.firestore, 'productos');
 
-    const productosCollection = collection(getFirestore(), 'productos');
+    this.productos$ = from(getDocs(productosCollection)).pipe(
+      map((querySnapshot) => {
+        return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      })
+    );
+  }
 
-    // Realizar la consulta a Firestore y obtener un Observable
-    this.productos = new Observable((observer) => {
-      getDocs(productosCollection).then((querySnapshot) => {
-        const productosArray: any[] = [];
-        querySnapshot.forEach((doc) => {
-          productosArray.push({ id: doc.id, ...doc.data() });
-        });
-        observer.next(productosArray);
-      }).catch((error) => {
-        observer.error(error);
-      });
-    });
 
-    }
   }
 

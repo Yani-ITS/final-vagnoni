@@ -1,0 +1,11 @@
+img{
+  width: 60%;
+}
+
+mat-card{
+  border: solid 2px salmon;
+}
+
+.container-fluid{
+  margin: 2%;
+}

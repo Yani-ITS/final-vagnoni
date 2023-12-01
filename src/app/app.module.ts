@@ -22,7 +22,11 @@ import { MatListModule, MatSelectionList} from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select'
-
+import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FirestoreModule } from '@angular/fire/firestore';
+import { MatInputModule } from '@angular/material/input';
+import { NgxMatDatetimePickerModule } from '@angular-material-components/datetime-picker'
 
 
 @NgModule({
@@ -50,6 +54,11 @@ import { MatSelectModule } from '@angular/material/select'
     MatCardModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatInputModule,
+    RouterModule,
+    BrowserAnimationsModule,
+    FirestoreModule,
+    NgxMatDatetimePickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
